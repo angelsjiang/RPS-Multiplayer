@@ -52,6 +52,10 @@ $("#start").on("click", function() {
                 $("#entry").hide();
                 // Update verifying variable
                 player1Exist = true;
+
+                // text user 1 and intructions
+                $("#text").text("Hi, " + user1 + "! You are Player 1!");
+                $("#text").append("<br><br>It's your turn!");
             }
             // else goes into player 2 box
             else {
@@ -69,6 +73,10 @@ $("#start").on("click", function() {
                 })
                 // Update verifying variable
                 player2Exist = true;
+
+                // text user 2 and intructions
+                $("#text").text("Hi, " + user2 + "! You are Player 2!");
+                $("#text").append("<br><br>It's your turn!");
 
                 // still some problems with it!
                 // maybe need to change in firebase???
@@ -107,21 +115,29 @@ database.ref('/players').on("value", function(snapshot) {
 
 $("#Player1").on("click", "#plyr1Choice", function() {
     console.log($(this).val());
+    console.log("who is user 2? " + database.ref('/players/2').val());
+    $("#text").html(user2 + "It's your turn!");
+
     database.ref('/players/1').update({
         choice: $(this).val()
     });
-    
-    $(".options1").html("<h4>" + $(this).val() + "</h4>").attr("value", $(this).val());
+
+    // $(".options1").html("<h4>" + $(this).val() + "</h4>");
 })
 
 $("#Player2").on("click", "#plyr2Choice", function() {
     console.log($(this).val());
+    console.log("who is user 1? " + database.ref('/players').child('1'));
+    $("#text").html(user1 + "It's your turn!");
+
     database.ref('/players/2').update({
         choice: $(this).val()
     });
-    $(".options2").html("<h4>" + $(this).val() + "</h4>").attr("value", $(this).val());
+
+    // $(".options2").html("<h4>" + $(this).val() + "</h4>");
 })
 
+// append result of the game
 database.ref('/players').on("value", function(snapshot) {
     console.log(snapshot.child('1').val().choice);
     console.log(snapshot.child('2').val().choice);
@@ -131,6 +147,10 @@ database.ref('/players').on("value", function(snapshot) {
 
     if(usr1Choice === "rock" && usr2Choice === "paper") {
         $("#middleBox").text("Player 2 win!");
+
+        // database.ref('/players/2').update({
+
+        // })
     }
     else if (usr1Choice === "rock" && usr2Choice === "scissors") {
         $("#middleBox").text("Player 1 win!");
@@ -145,9 +165,9 @@ database.ref('/players/1').on("value", function(snapshot) {
 
     $("#Player1").html("<h3>" + snapshot.val().name + "</h3>");
 
-    // text user 1 and intructions
-    $("#text").text("Hi, " + snapshot.val().name + "! You are Player 1!");
-    $("#text").append("<br><br>It's your turn!");
+    // // text user 1 and intructions
+    // $("#text").text("Hi, " + snapshot.val().name + "! You are Player 1!");
+    // $("#text").append("<br><br>It's your turn!");
 
     // text user name onto html
     $("#Player1").html("<h3>" + snapshot.val().name + "</h3>");
@@ -160,9 +180,9 @@ database.ref('/players/2').on("value", function(snapshot) {
 
     $("#Player2").html("<h3>" + snapshot.val().name + "</h3>");
 
-    // text user 2 and intructions
-    $("#text").text("Hi, " + snapshot.val().name + "! You are Player 2!");
-    $("#text").append("<br><br>It's your turn!");
+    // // text user 2 and intructions
+    // $("#text").text("Hi, " + snapshot.val().name + "! You are Player 2!");
+    // $("#text").append("<br><br>It's your turn!");
 
     // text user name onto html
     $("#Player2").html("<h3>" + snapshot.val().name + "</h3>");
