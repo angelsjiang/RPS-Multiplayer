@@ -36,8 +36,7 @@ window.onload = function () {
         console.log(occupied);
         if (!occupied) { // snapshot.child("player").numChildren < 2
 
-            database.ref('/players').once("value")
-            .then(function (snapshot) {
+            database.ref('/players').once("value", function (snapshot) {
                 // check if returns null  
                 console.log(snapshot.val());
 
@@ -121,7 +120,7 @@ window.onload = function () {
         }
     })
 
-    // PROBLEM IS HERE!!!!!
+    // PROBLEM IS HERE!!!!! NOT STORED D:
     console.log(user1);
     console.log(user2);
 
@@ -307,4 +306,8 @@ window.onload = function () {
         // Updates user choice
         $(".options2").html(snapshot.val().choice);
     })
+    
+    database.ref('/players/1').onDisconnect().remove(); // HOW DO I WRITE THIS???? WHERE DO I PUT THIS??
+    database.ref('/players/2').onDisconnect().remove();
 }
+
