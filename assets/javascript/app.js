@@ -144,7 +144,7 @@ window.onload = function () {
     $("#Player2").on("click", "#plyr2Choice", function () {
         console.log($(this).val());
         console.log("who is user 1? " + user2);
-        
+
         database.ref("/players/1").once("value", function(snapshot) {
             $("#text").html(snapshot.val().name + ", It's your turn!");
         })
@@ -167,115 +167,115 @@ window.onload = function () {
         var usr1Choice = snapshot.child('1').val().choice;
         var usr2Choice = snapshot.child('2').val().choice;
 
-        // // rock vs everything else
-        // if (usr1Choice === "rock" && usr2Choice === "paper") {
-        //     $("#middleBox").text("Player 2 win!");
+        // rock vs everything else
+        if (usr1Choice === "rock" && usr2Choice === "paper") {
+            $("#middleBox").text("Player 2 win!");
 
-        //     btnExists = false;
+            btnExists = false;
 
-        //     wins2++;
-        //     losses1++;
+            wins2++;
+            losses1++;
 
-        //     database.ref('/players/2').update({
-        //         wins: wins2
-        //     })
-        //     database.ref('/players/1').update({
-        //         losses: losses1
-        //     })
-        // }
-        // else if (usr1Choice === "rock" && usr2Choice === "scissors") {
-        //     $("#middleBox").text("Player 1 win!");
+            database.ref('/players/2').update({
+                wins: wins2
+            })
+            database.ref('/players/1').update({
+                losses: losses1
+            })
+        }
+        else if (usr1Choice === "rock" && usr2Choice === "scissors") {
+            $("#middleBox").text("Player 1 win!");
 
-        //     btnExists = false;
+            btnExists = false;
 
-        //     wins1++;
-        //     losses2++;
+            wins1++;
+            losses2++;
 
-        //     database.ref('/players/1').update({
-        //         wins: wins1
-        //     })
-        //     database.ref('/players/2').update({
-        //         losses: losses2
-        //     })
-        // }
-        // else if (usr1Choice === "rock" && usr2Choice === "rock") {
-        //     $("#middleBox").text("Tie!");
+            database.ref('/players/1').update({
+                wins: wins1
+            })
+            database.ref('/players/2').update({
+                losses: losses2
+            })
+        }
+        else if (usr1Choice === "rock" && usr2Choice === "rock") {
+            $("#middleBox").text("Tie!");
 
-        //     btnExists = false;
-        // }
-        // // paper vs. everything else
-        // else if (usr1Choice === "paper" && usr2Choice === "rock") {
-        //     $("#middleBox").text("Player 1 win!");
+            btnExists = false;
+        }
+        // paper vs. everything else
+        else if (usr1Choice === "paper" && usr2Choice === "rock") {
+            $("#middleBox").text("Player 1 win!");
 
-        //     btnExists = false;
+            btnExists = false;
 
-        //     wins1++;
-        //     losses2++;
+            wins1++;
+            losses2++;
 
-        //     database.ref('/players/1').update({
-        //         wins: wins1
-        //     })
-        //     database.ref('/players/2').update({
-        //         losses: losses2
-        //     })
-        // }
-        // else if (usr1Choice === "paper" && usr2Choice === "scissors") {
-        //     $("#middleBox").text("Player 2 win!");
+            database.ref('/players/1').update({
+                wins: wins1
+            })
+            database.ref('/players/2').update({
+                losses: losses2
+            })
+        }
+        else if (usr1Choice === "paper" && usr2Choice === "scissors") {
+            $("#middleBox").text("Player 2 win!");
 
-        //     btnExists = false;
+            btnExists = false;
 
-        //     wins2++;
-        //     losses1++;
+            wins2++;
+            losses1++;
 
-        //     database.ref('/players/2').update({
-        //         wins: wins2
-        //     })
-        //     database.ref('/players/1').update({
-        //         losses: losses1
-        //     })
-        // }
-        // else if (usr1Choice === "paper" && usr2Choice === "paper") {
-        //     $("#middleBox").text("Tie!");
+            database.ref('/players/2').update({
+                wins: wins2
+            })
+            database.ref('/players/1').update({
+                losses: losses1
+            })
+        }
+        else if (usr1Choice === "paper" && usr2Choice === "paper") {
+            $("#middleBox").text("Tie!");
 
-        //     btnExists = false;
-        // }
+            btnExists = false;
+        }
 
-        // // scissors vs. everything else
-        // else if (usr1Choice === "scissors" && usr2Choice === "paper") {
-        //     $("#middleBox").text("Player 1 win!");
+        // scissors vs. everything else
+        else if (usr1Choice === "scissors" && usr2Choice === "paper") {
+            $("#middleBox").text("Player 1 win!");
 
-        //     btnExists = false;
+            btnExists = false;
 
-        //     wins1++;
-        //     losses2++;
+            wins1++;
+            losses2++;
 
-        //     database.ref('/players/1').update({
-        //         wins: wins1
-        //     })
-        //     database.ref('/players/2').update({
-        //         losses: losses2
-        //     })
-        // }
-        // else if (usr1Choice === "scissors" && usr2Choice === "rock") {
-        //     $("#middleBox").text("Player 2 win!");
+            database.ref('/players/1').update({
+                wins: wins1
+            })
+            database.ref('/players/2').update({
+                losses: losses2
+            })
+        }
+        else if (usr1Choice === "scissors" && usr2Choice === "rock") {
+            $("#middleBox").text("Player 2 win!");
 
-        //     btnExists = false;
+            btnExists = false;
 
-        //     wins2++;
-        //     losses1++;
+            wins2++;
+            losses1++;
 
-        //     database.ref('/players/2').update({
-        //         wins: wins2
-        //     })
-        //     database.ref('/players/1').update({
-        //         losses: losses1
-        //     })
-        // }
-        // else if (usr1Choice === "scissors" && usr2Choice === "scissors") {
-        //     $("#middleBox").text("Tie!");
+            database.ref('/players/2').update({
+                wins: wins2
+            })
+            database.ref('/players/1').update({
+                losses: losses1
+            })
+        }
+        else if (usr1Choice === "scissors" && usr2Choice === "scissors") {
+            $("#middleBox").text("Tie!");
 
-        //     btnExists = false;
-        // }
+            btnExists = false;
+        }
     })
 
     // --------------------Update html using database info -------------------
@@ -283,8 +283,6 @@ window.onload = function () {
     // simultaneously updates both users' browsers
     // Player 1 info
     database.ref('/players/1').on("value", function (snapshot) {
-
-        $("#Player1").html("<h3>" + snapshot.val().name + "</h3>");
 
         // // text user 1 and intructions
         // $("#text").text("Hi, " + snapshot.val().name + "! You are Player 1!");
@@ -298,8 +296,6 @@ window.onload = function () {
     })
     // Player 2 info
     database.ref('/players/2').on("value", function (snapshot) {
-
-        $("#Player2").html("<h3>" + snapshot.val().name + "</h3>");
 
         // // text user 2 and intructions
         // $("#text").text("Hi, " + snapshot.val().name + "! You are Player 2!");
