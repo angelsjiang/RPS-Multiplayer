@@ -1,0 +1,42 @@
+h1 {
+    text-align: center;
+}
+
+.container {
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
+}
+
+#entry {
+    text-align: center;
+    display: block;
+}
+
+#text {
+    display: block;
+}
+
+#Player1,
+#middleBox,
+#Player2 {
+    border: 2px solid lightgrey;
+    margin: 5px;
+    height: 180px;
+}
+
+#usrInteract {
+    display: block;
+    margin: auto;
+}
+
+#chatWindow {
+    width: 60%;
+    height: 250px;
+    border: 2px solid lightgrey;
+
+}
+
+#usrChat {
+    width: 50%;
+}
